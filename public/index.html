@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+    <!--      <script src="https://shadow.elemecdn.com/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>-->
+    <link href="https://shadow.elemecdn.com/npm/ant-design-vue@1.7.2/dist/antd.min.css" rel="stylesheet">
+    <style>
+
+        #hello ul {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+        }
+
+        #hello ul li {
+            list-style: none;
+            width: 6px;
+            height: 20px;
+            background: #262626;
+            margin: 0 4px;
+            animation: animate .7s infinite alternate;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scaleY(1);
+            }
+            25% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(1);
+            }
+            75% {
+                transform: scaleY(1);
+            }
+            100% {
+                transform: scaleY(3);
+            }
+        }
+
+        #hello ul li:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        #hello ul li:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #hello ul li:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        #hello ul li:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        #hello ul li:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        #hello ul li:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        #app {
+            display: none;
+        }
+
+    </style>
+    <title>FishBone</title>
+</head>
+<body style="margin: 0px!important;">
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="hello">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="https://shadow.elemecdn.com/npm/vue@2.6.12/dist/vue.runtime.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/ant-design-vue@1.7.2/dist/antd.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/axios@0.21.1/dist/axios.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/vue-router@3.4.9/dist/vue-router.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/crypto-js@4.0.0/crypto-js.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/protobufjs@6.10.1/dist/protobuf.min.js"></script>
+<script src="https://shadow.elemecdn.com/npm/@highlightjs/cdn-assets@10.5.0/highlight.min.js"></script>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>
