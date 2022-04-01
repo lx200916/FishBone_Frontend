@@ -25,12 +25,12 @@
         <FireI v-if="!paste.password&&isBurn&&!Burned" v-on:endTimer="burn"></FireI>
 
         <div v-if="!paste.password" ref="hljs">
-          <pre><code v-bind:class="'line-numbers codeArea ' + (paste.lang=='Auto'?'':paste.lang.toLowerCase())"
+          <pre><code v-bind:class="'line-numbers codeArea ' + (paste.lang=='Auto'?'':'language-'+paste.lang.toLowerCase())"
                      v-text="paste.content"></code></pre>
 
         </div>
 
-        <div v-else class="hljs " style="position:relative;">   <pre> <code class="cpp">
+        <div v-else class="hljs " style="position:relative;">   <pre> <code class="language-cpp">
   //你应该明白这段代码只是占位符吧?
     float Q_rsqrt( float number )
  {

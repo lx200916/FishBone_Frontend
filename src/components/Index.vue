@@ -180,7 +180,7 @@ export default {
       type: '2',
       statusofPage: false,
       paste: {content: "", lang: "Auto", password: ""},
-      langList: ['Cpp', 'Go', 'Java', 'C#', 'JSON', 'SQL', 'TypeScript', 'PHP', 'Rust', 'Ruby', 'Bash', 'Swift'],
+      langList: ['Cpp', 'Go', 'Java', 'CSharp', 'JSON', 'SQL', 'TypeScript', 'PHP', 'Rust', 'Ruby', 'Bash', 'Swift'],
       inputVisible: false,
       inputValue: '',
       postURL: "/once",
