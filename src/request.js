@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Message from '@/assets/msg'
 import protobuf from 'protobufjs'
-import CryptoJS from 'crypto-js'
+import CryptoJS from 'c'
 
 const Paste = Message.lookup("Paste")
 const newPaste = Message.lookup("newPaste")
@@ -60,7 +60,17 @@ export function randomString(e) {
 }
 
 export function aesEncode(content, pass) {
-    return CryptoJS.AES.encrypt("##PasteMe##" + content, pass).toString()
+    let options = {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+    };
+    let derivedParams = CryptoJS.kdf.OpenSSL.execute(
+        pass,
+      256 / 32,
+      128 / 32,
+      "fishbone"
+    );
+    return CryptoJS.AES.encrypt("##PasteMe##" + content, derivedParams.key,options).toString()
 
 }
 
@@ -69,7 +79,17 @@ export function getToken(base) {
 }
 
 export function aesDecode(content, pass) {
-    var bytes = CryptoJS.AES.decrypt(content, pass);
+    let options = {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+    };
+    let derivedParams = CryptoJS.kdf.OpenSSL.execute(
+        pass,
+        256 / 32,
+        128 / 32,
+        "fishbone"
+    );
+    var bytes = CryptoJS.AES.decrypt(content, derivedParams.key, options);
     var originalText = bytes.toString(CryptoJS.enc.Utf8);
     if (originalText.length > 0 && originalText.startsWith("##PasteMe##")) {
         return originalText.substr(11)
