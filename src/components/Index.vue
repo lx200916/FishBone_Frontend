@@ -166,6 +166,7 @@
 <script>
 import Clipboard from 'clipboard'
 import {aesEncode, dateFormat, fromBase64, getToken, randomString, toBase64} from "@/request";
+import { Modal } from 'ant-design-vue';
 
 
 export default {
@@ -186,7 +187,9 @@ export default {
       postURL: "/once",
       deleteType: "1",
       token: '',
-      loading: false
+      loading: false,
+      regexList:[/(access_*id|access_*key|app_*id|app_*secert|app(_*)key|password)(['"]\s*]*)\s*(=\s*|:)["']\S+["']/gmi,/["']ghp_\S+["']/gmi,/["']Authorization["']*\s*:\s*["']*(Basic|Bearer|Digest|HOBA|Mutual|Negotiate|VAPID|SCRAM|AWS4-HMAC-SHA256|token)/gmi],
+      force:false,
 
     }
   }, methods: {
@@ -260,6 +263,35 @@ export default {
         pasteContent = aesEncode(pasteContent, pastePass)
         isEncryption = true
       }
+      if(pasteContent.length ==0) {
+        this.$message.error("请输入内容")
+        return
+      }
+      if (pastePass.length ==0){
+        for (var reg in this.regexList){
+          if(this.regexList[reg].test(pasteContent)){
+            let that = this
+           Modal.confirm({
+              title: '检测到潜在的泄露风险',maskClosable:false,
+             keyboard:false,
+             content: <p>检测到公开分享的内容可能包含<strong>敏感信息(如API机密或鉴权信息)</strong>，可能引发<strong>机密泄露</strong>！<br/>建议您创建加密分享。<br/>选择 <strong>绕过</strong> 后再次提交即可强制创建公开分享。</p>,
+              okText: '取消',
+              cancelText: '绕过',
+              onOk(){
+
+              },
+              onCancel(){
+                that.force=true
+              }
+            })
+            return
+          }
+
+
+        }
+      }
+
+
 
       if (this.type == "2") {
         this.postURL = "/"
@@ -307,6 +339,7 @@ export default {
           }catch (e) {
             console.log(e)
             this.$message.error("历史保存出错")
+            return
 
           }
 
@@ -314,6 +347,7 @@ export default {
         }
       }, err => {
         this.loading = false
+        this.$message.error("请检查输入")
 
         console.log(err)
       })

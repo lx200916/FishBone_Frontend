@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Message from '@/assets/msg'
 import protobuf from 'protobufjs'
-import CryptoJS from 'c'
+import CryptoJS from 'crypto-js'
 
 const Paste = Message.lookup("Paste")
 const newPaste = Message.lookup("newPaste")

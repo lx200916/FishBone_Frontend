@@ -179,12 +179,12 @@ export default {
           this.$message.error("历史保存出错")
 
         }
-      } else if (resp.status == 404) {
+      } else if (resp.status == 404||resp.status ==400) {
         this.$message.error("Paste 不存在")
         this.$router.push("/")
       } else {
         this.$message.error("未知错误")
-
+        this.$router.push("/")
       }
 
 
